@@ -20,9 +20,8 @@ echo "Compiling FFMPEG for Android..."
 #./compile_ffmpeg_libstagefright_android.sh $1 || exit 1
 
 echo "Making extra_lib dir for android ..."
-cd ../../lib/
-mkdir -p android
-cd android
+mkdir -p ../../lib/android
+cd ../../lib/android
 LIBPATH=$(pwd)
 
 mkdir -p $LIBPATH/armeabi
@@ -38,7 +37,7 @@ rm -f *.so
 
 cd ../../../build/android/jni
 echo "Building extra libs for GPAC Android..."
-ndk-build 
+ndk-build
 if [ $? != 0 ] ; then
 	exit 1
 fi
