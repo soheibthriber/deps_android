@@ -1,0 +1,24 @@
+[submodule "zlib"]
+	path = zlib
+	url = git@gitlab.enst.fr:gpac/gpac_build/deps_common/zlib.git
+[submodule "js"]
+	path = js
+	url = git@gitlab.enst.fr:gpac/gpac_build/deps_common/js.git
+[submodule "faad2"]
+	path = faad2
+	url = git@gitlab.enst.fr:gpac/gpac_build/deps_common/faad2.git
+[submodule "freetype"]
+	path = freetype
+	url = git@gitlab.enst.fr:gpac/gpac_build/deps_common/freetype.git
+[submodule "libjpg"]
+	path = libjpg
+	url = git@gitlab.enst.fr:gpac/gpac_build/deps_common/libjpg.git
+[submodule "libmad"]
+	path = libmad
+	url = git@gitlab.enst.fr:gpac/gpac_build/deps_common/libmad.git
+[submodule "OpenJPEG"]
+	path = OpenJPEG
+	url = git@gitlab.enst.fr:gpac/gpac_build/deps_common/OpenJPEG.git
+[submodule "libpng"]
+	path = libpng
+	url = git@gitlab.enst.fr:gpac/gpac_build/deps_common/libpng.git

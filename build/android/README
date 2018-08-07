@@ -1,0 +1,10 @@
+To compile FFMPEG support stagefright for Android 5, you need also add to ffmpeg-2.4.3/android-source/frameworks/native/include/binder/Binder.h these lines:
+
+#ifdef __cplusplus
+#include <atomic>
+using namespace std;
+#else
+#include <stdatomic.h>
+#endif
+
+If you do not need support stagefright for Android, comment line 20 in build/android/gpac_build_all_extra_libs
