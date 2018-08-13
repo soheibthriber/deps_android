@@ -31,6 +31,12 @@ LOCAL_EXPORT_C_INCLUDES := $(LOCAL_PATH)/ffmpeg/$(TARGET_ARCH_ABI)/include
 include $(PREBUILT_SHARED_LIBRARY)
 
 include $(CLEAR_VARS) 
+LOCAL_MODULE:= libavdevice
+LOCAL_SRC_FILES:= $(LOCAL_PATH)/ffmpeg/$(TARGET_ARCH_ABI)/lib/libavdevice.so
+LOCAL_EXPORT_C_INCLUDES := $(LOCAL_PATH)/ffmpeg/$(TARGET_ARCH_ABI)/include
+include $(PREBUILT_SHARED_LIBRARY)
+
+include $(CLEAR_VARS)
 LOCAL_MODULE:= libwsresample 
 LOCAL_SRC_FILES:= $(LOCAL_PATH)/ffmpeg/$(TARGET_ARCH_ABI)/lib/libswresample.so 
 LOCAL_EXPORT_C_INCLUDES := $(LOCAL_PATH)/ffmpeg/$(TARGET_ARCH_ABI)/include
