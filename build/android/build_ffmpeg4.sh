@@ -26,7 +26,7 @@ if [ ! -d "ffmpeg-$FFVERSION" ]; then
 fi
 
 #overriding some files ...
-#cp -f $BASEPATH/ffmpeg_patch/configure ffmpeg-4.0.1
+patch -i build/android/ffmpeg_configure.patch ffmpeg-$FFVERSION/configure
 
 cd ffmpeg-$FFVERSION/
 
