@@ -15,9 +15,6 @@ cd `dirname $0`
 echo "Compiling FFMPEG for Android..."
 ./build_ffmpeg4.sh $1 || exit 1
 
-#echo "Compiling FFMPEG support libstagefright for Android..."
-#comment this line if you do not need support stagefright
-#./compile_ffmpeg_libstagefright_android.sh $1 || exit 1
 
 echo "Making extra_lib dir for android ..."
 mkdir -p ../../lib/android
@@ -42,18 +39,16 @@ if [ $? != 0 ] ; then
 	exit 1
 fi
 
-cd ../libs/
+cd ..
+echo "Building nghttp2 for Android..."
+./build_nghttp2.sh $1 || exit 1
+
+
+cd libs/
 echo "Copying extra libs for GPAC Android to extra_lib dir ... "
-for i in $(find . -name '*.so')
+for i in $(find . -name '*.so' -or -name '*.a')
 do
 	echo -n "$i..."
 	cp "$i" "$LIBPATH/$i" || exit 1
 	echo " done"
 done
-
-
-
-
-
-
-
