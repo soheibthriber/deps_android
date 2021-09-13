@@ -34,3 +34,7 @@
 	path = nghttp2
 	url = https://github.com/gpac-buildbot/nghttp2.git
 	ignore = dirty
+[submodule "OpenSSL-for-Android-Prebuilt"]
+	path = OpenSSL-for-Android-Prebuilt
+	url = https://github.com/PurpleI2P/OpenSSL-for-Android-Prebuilt.git
+	ignore = dirty
