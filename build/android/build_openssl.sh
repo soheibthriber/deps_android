@@ -14,7 +14,8 @@ SSLDIR="${PWD}"
 for ABI in "armeabi" "armeabi-v7a" "x86"; do
 
     PREFIX=${SSLDIR}/android/${ABI}
-    DEST="../build/android/libs/$ABI"
+    DEST1="../build/android/libs/$ABI"
+    DEST2="../lib/android/$ABI"
 
     if [ "$ABI" = "x86" ]; then
         ARCH="android-x86"
@@ -35,7 +36,8 @@ for ABI in "armeabi" "armeabi-v7a" "x86"; do
     make -j4 build_libs
     make install_dev DESTDIR=$PREFIX
 
-    cp -Lv $PREFIX/usr/local/lib/*.{a,so}  $DEST
+    cp -Lv $PREFIX/usr/local/lib/*.{a,so}  $DEST1
+    cp -Lv $PREFIX/usr/local/lib/*.{a,so}  $DEST2
 
 done
 

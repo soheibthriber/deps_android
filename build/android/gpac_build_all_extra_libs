@@ -44,6 +44,10 @@ echo "Building nghttp2 for Android..."
 ./build_nghttp2.sh $1 || exit 1
 
 
+echo "Building openssl for Android..."
+./build_openssl.sh $1 || exit 1
+
+
 cd libs/
 echo "Copying extra libs for GPAC Android to extra_lib dir ... "
 for i in $(find . -name '*.so' -or -name '*.a')

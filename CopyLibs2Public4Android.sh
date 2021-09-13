@@ -1,5 +1,6 @@
 #!/bin/sh
-./copy_openssl.sh
+mkdir -p ../gpac_public/extra_lib/include/openssl_android
+cp -ra openssl/include/openssl ../gpac_public/extra_lib/include/openssl_android/
 mkdir -p ../gpac_public/extra_lib/lib/android/armeabi
 cp -rav lib/android/armeabi/*.so ../gpac_public/extra_lib/lib/android/armeabi
 cp -rav lib/android/armeabi/*.a ../gpac_public/extra_lib/lib/android/armeabi
