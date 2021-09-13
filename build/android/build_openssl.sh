@@ -30,11 +30,12 @@ for ABI in "armeabi" "armeabi-v7a" "x86"; do
     # Expand the prebuilt/* path into the correct one
     export PATH=$TOOLCHAIN/bin:$PATH
 
-    make clean
+    make clean || true
     # make update
     ./Configure $ARCH -no-threads -D__ANDROID_API__=9
     make -j4 build_libs
     make install_dev DESTDIR=$PREFIX
+
 
     cp -Lv $PREFIX/usr/local/lib/*.{a,so}  $DEST1
     cp -Lv $PREFIX/usr/local/lib/*.{a,so}  $DEST2
