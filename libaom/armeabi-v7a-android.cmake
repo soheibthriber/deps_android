@@ -15,23 +15,27 @@ set(AOM_BUILD_CMAKE_TOOLCHAINS_ARMV7_LINUX_GCC_CMAKE_ 1)
 
 set(CMAKE_SYSTEM_NAME "Linux")
 
-LIST(APPEND CMAKE_PROGRAM_PATH  "/opt/android-ndk/toolchains/arm-linux-androideabi-4.9/prebuilt/linux-x86_64/bin" )
+set(NDK "/opt/android-ndk")
+set(API "23")
+
+set(TOOLCHAIN "${NDK}/toolchains/llvm/prebuilt/linux-x86_64")
+
+LIST(APPEND CMAKE_PROGRAM_PATH  "${TOOLCHAIN}/bin" )
 
 if("${CROSS}" STREQUAL "")
   # Default the cross compiler prefix to something known to work.
-  #set(CROSS arm-linux-gnueabihf-)
-  set(CROSS arm-linux-androideabi-)
+  set(CROSS armv7a-linux-androideabi${API}-)
 endif()
 
 if(NOT ${CROSS} MATCHES hf-$)
   set(AOM_EXTRA_TOOLCHAIN_FLAGS "-mfloat-abi=softfp")
 endif()
 
-set(CMAKE_SYSROOT /opt/android-ndk/platforms/android-21/arch-arm/)
+set(CMAKE_SYSROOT ${TOOLCHAIN}/sysroot)
 
-set(CMAKE_C_COMPILER ${CROSS}gcc)
-set(CMAKE_CXX_COMPILER ${CROSS}g++)
-set(AS_EXECUTABLE ${CROSS}as)
+set(CMAKE_C_COMPILER ${CROSS}clang)
+set(CMAKE_CXX_COMPILER ${CROSS}clang++)
+set(AS_EXECUTABLE ${CMAKE_C_COMPILER})
 set(CMAKE_C_COMPILER_ARG1
     "-march=armv7-a -mfpu=neon ${AOM_EXTRA_TOOLCHAIN_FLAGS}")
 set(CMAKE_CXX_COMPILER_ARG1
@@ -41,8 +45,7 @@ set(AOM_AS_FLAGS --defsym ARCHITECTURE=7 -march=armv7-a -mfpu=neon
 set(CMAKE_SYSTEM_PROCESSOR "armv7")
 
 
-SET(CMAKE_C_FLAGS " -I/opt/android-ndk/sources/cxx-stl/gnu-libstdc++/4.9/include -I/opt/android-ndk/sources/cxx-stl/gnu-libstdc++/4.9/libs/armeabi-v7a/include " CACHE STRING "" FORCE)
-link_directories(/opt/android-ndk/platforms/android-21/arch-arm/usr/lib)
+SET(CMAKE_C_FLAGS " -I${NDK}/sources/android/cpufeatures " CACHE STRING "" FORCE)
 
 # No intrinsics flag required for armv7-linux-gcc.
 set(AOM_NEON_INTRIN_FLAG "")

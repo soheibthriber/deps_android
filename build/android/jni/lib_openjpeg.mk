@@ -3,8 +3,6 @@ LOCAL_PATH:= $(call my-dir)
 include $(CLEAR_VARS)
 
 LOCAL_MODULE		:= libopenjpeg
-#LOCAL_CFLAGS    	:= -Werror
-TARGET_PLATFORM		:= android-4
 LIBOPENJPEG_PATH 	:= ../../../OpenJPEG/
 LOCAL_C_INCLUDES 	:= $(LOCAL_PATH)/../../../OpenJPEG/libopenjpeg
 
@@ -16,4 +14,3 @@ LOCAL_SRC_FILES := $(LIBOPENJPEG_PATH)/libopenjpeg/bio.c $(LIBOPENJPEG_PATH)/lib
 
 
 include $(BUILD_SHARED_LIBRARY)
-

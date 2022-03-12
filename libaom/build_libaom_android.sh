@@ -14,7 +14,7 @@ git checkout cf38e96db7664ae82d8d67287fa0c4a60b44473b
 cd ..
 
 
-ABIS="armeabi-v7a x86"
+ABIS="armeabi-v7a x86 aarch64"
 
 
 for ABI in $ABIS ; do
@@ -57,4 +57,3 @@ done
 
 
 set +x
-

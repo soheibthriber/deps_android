@@ -4,7 +4,6 @@ include $(CLEAR_VARS)
 # measurements show that the ARM version of ZLib is about x1.17 faster
 # than the thumb one...
 LOCAL_ARM_MODE := arm
-TARGET_PLATFORM		:= android-4
 
 #LOCAL_C_INCLUDES 	:= $(LOCAL_PATH)/../../../zlib/
 
@@ -39,4 +38,3 @@ include $(BUILD_SHARED_LIBRARY)
 #LOCAL_CFLAGS += -O3 -DUSE_MMAP
 #LOCAL_SRC_FILES := $(zlib_files)
 #include $(BUILD_STATIC_LIBRARY)
-

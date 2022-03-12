@@ -63,7 +63,6 @@ common_C_INCLUDES += $(LOCAL_PATH)/../../../zlib
 LOCAL_LDLIBS    += -lz
 
 LOCAL_SHARED_LIBRARIES := libz
-TARGET_PLATFORM		:= android-4
 LOCAL_MODULE:= libpng
 
 LOCAL_COPY_HEADERS_TO := $(common_COPY_HEADERS_TO)
@@ -71,5 +70,3 @@ LOCAL_COPY_HEADERS := $(common_COPY_HEADERS)
 
 #include $(BUILD_STATIC_LIBRARY)
 include $(BUILD_SHARED_LIBRARY)
-
-

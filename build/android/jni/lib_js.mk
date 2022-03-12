@@ -3,11 +3,19 @@ LOCAL_PATH:= $(call my-dir)
 include $(CLEAR_VARS)
 
 LOCAL_MODULE		:= libjs_osmo
-#LOCAL_CFLAGS    	:= -Werror
-TARGET_PLATFORM		:= android-4
-LIBJS_PATH := ../../../js
-LOCAL_C_INCLUDES 	:= $(LIBJS_PATH) $(LIBJS_PATH)/editline/ $(LOCAL_PATH)/js/ 
 
+LIBJS_PATH := ../../../js
+LOCAL_C_INCLUDES 	:= $(LIBJS_PATH) $(LIBJS_PATH)/editline/ $(LOCAL_PATH)/js/
+
+ifeq ($(TARGET_ARCH_ABI),arm64-v8a)
+  	LOCAL_C_INCLUDES += $(LOCAL_PATH)/js/64/
+else
+ifeq ($(TARGET_ARCH_ABI),x86_64)
+	LOCAL_C_INCLUDES += $(LOCAL_PATH)/js/64/
+else
+	LOCAL_C_INCLUDES += $(LOCAL_PATH)/js/32/
+endif
+endif
 
 LOCAL_SHARED_LIBRARIES := libeditline
 
@@ -47,8 +55,8 @@ LOCAL_SRC_FILES :=	\
 	$(LIBJS_PATH)/jsxdrapi.c	\
 	$(LIBJS_PATH)/jsxml.c		\
 	$(LIBJS_PATH)/prmjtime.c	\
-	$(LIBJS_PATH)/jsfile.c		
-	
+	$(LIBJS_PATH)/jsfile.c
+
 
 #LOCAL_SRC_FILES += js.c
 #js/jsinvoke.c
@@ -59,4 +67,3 @@ LOCAL_CFLAGS += -DXP_UNIX
 #include $(BUILD_EXECUTABLE)
 include $(BUILD_SHARED_LIBRARY)
 #include $(BUILD_STATIC_LIBRARY)
-

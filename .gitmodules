@@ -39,3 +39,8 @@
 	url = https://github.com/openssl/openssl.git
 	branch = OpenSSL_1_1_1-stable
 	ignore = dirty
+[submodule "ffmpeg-kit"]
+	path = ffmpeg-kit
+	url = https://github.com/tanersener/ffmpeg-kit
+	ignore = dirty
+	branch = development

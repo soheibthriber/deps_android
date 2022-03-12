@@ -6,8 +6,6 @@ LIBMAD_PATH := ../../../libmad
 LOCAL_C_INCLUDES 	:= $(LOCAL_PATH)/../../../libmad $(LOCAL_PATH)/libmad
 
 LOCAL_MODULE		:= libmad
-#LOCAL_CFLAGS    	:= -Werror
-TARGET_PLATFORM		:= android-4
 LOCAL_ARM_MODE		:= arm
 
 

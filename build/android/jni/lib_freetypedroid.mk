@@ -12,7 +12,6 @@ include $(CLEAR_VARS)
 # when loading complex pages in the browser
 #
 LOCAL_ARM_MODE := arm
-TARGET_PLATFORM := android-4
 
 
 LIBFT2_PATH := ../../../freetype

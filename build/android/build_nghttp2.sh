@@ -6,55 +6,63 @@ pushd .
 cd ../../nghttp2
 
 NDK="/opt/android-ndk/"
-#export TOOLCHAIN="/opt/android-ndk/toolchains/arm-linux-androideabi-4.9/prebuilt/linux-x86_64"
-#export PATH=$TOOLCHAIN/bin:$PATH
-#export SYSROOT=/opt/android-ndk/platforms/android-9/arch-arm/
-#export ABI="arm-linux-androideabi"
+export TOOLCHAIN=$NDK/toolchains/llvm/prebuilt/linux-x86_64
+
 NGHTTP2="${PWD}"
 
+# Set this to your minSdkVersion.
+export API=23
 
 
 autoreconf -i
 
-for ABI in "armeabi-v7a" "armeabi" "x86"; do
+for ABI in "armeabi-v7a" "x86"; do
 
     PREFIX=${NGHTTP2}/android/${ABI}
     DEST="../build/android/libs/$ABI"
 
     if [ "$ABI" = "x86" ]; then
-        ARCH="x86"
-        HOST="i686-linux-android"
-        TOOLCHAIN=`echo $NDK/toolchains/x86-4.9/prebuilt/*-x86*`
-    else
-        ARCH="arm"
-        HOST="arm-linux-androideabi"
-        TOOLCHAIN=`echo $NDK/toolchains/arm-linux-androideabi-4.9/prebuilt/*-x86*`
+        TARGET="i686-linux-android"
+    elif [ "$ABI" = "armeabi-v7a" ]; then
+        TARGET="armv7a-linux-androideabi"
+    elif [ "$ABI" = "arm64-v8a" ]; then
+        TARGET="aarch64-linux-android"
     fi
-    SYSROOT=$NDK/platforms/android-9/arch-$ARCH
-    # Expand the prebuilt/* path into the correct one
-    export PATH=$TOOLCHAIN/bin:$PATH
+
+    export AR=$TOOLCHAIN/bin/llvm-ar
+    export CC=$TOOLCHAIN/bin/$TARGET$API-clang
+    export AS=$CC
+    export CXX=$TOOLCHAIN/bin/$TARGET$API-clang++
+    export LD=$TOOLCHAIN/bin/ld
+    export RANLIB=$TOOLCHAIN/bin/llvm-ranlib
+    export STRIP=$TOOLCHAIN/bin/llvm-strip
+
+
+    SYSROOT=$TOOLCHAIN/sysroot
+
+    # export PATH=$TOOLCHAIN/bin:$PATH
 
     ./configure \
         --disable-app \
         --disable-shared \
         --disable-threads \
         --enable-lib-only \
-        --host="$HOST" \
-        --with-sysroot="$SYSROOT" \
+        --host="$TARGET" \
         --build=`dpkg-architecture -qDEB_BUILD_GNU_TYPE` \
         --without-libxml2 \
         --disable-python-bindings \
         --disable-examples \
-        CC="$TOOLCHAIN"/bin/$HOST-gcc \
-        CXX="$TOOLCHAIN"/bin/$HOST-g++ \
-        CPPFLAGS="-fPIE --sysroot=$SYSROOT -I$SYSROOT/usr/include" \
-        LDFLAGS="-fPIE -pie --sysroot=$SYSROOT -L$SYSROOT/usr/lib"
+        --with-sysroot="$SYSROOT" \
+        CPPFLAGS="-fPIC -fpic --sysroot=$SYSROOT -I$SYSROOT/usr/include" \
+        LDFLAGS="-fPIC -fpic --sysroot=$SYSROOT -L$SYSROOT/usr/lib"
+
 
 
     make
     make install DESTDIR=$PREFIX
     make clean
 
+    mkdir -p "$DEST"
     cp -av $PREFIX/usr/local/lib/*.a  $DEST
 
 done
