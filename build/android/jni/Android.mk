@@ -9,3 +9,4 @@ include $(LOCAL_PATH)/lib_jpegdroid.mk
 include $(LOCAL_PATH)/lib_mad.mk
 include $(LOCAL_PATH)/lib_openjpeg.mk
 include $(LOCAL_PATH)/lib_pngdroid.mk
+include $(LOCAL_PATH)/lib_caption.mk

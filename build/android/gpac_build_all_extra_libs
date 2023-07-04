@@ -37,6 +37,8 @@ rm -f *.so
 
 cd ../../../build/android/jni
 echo "Building extra libs for GPAC Android..."
+mkdir libcaption 2> /dev/null
+cp -f ../../../libcaption/src/eia608_from_utf8.c.cached libcaption/eia608_from_utf8.c
 ndk-build
 if [ $? != 0 ] ; then
 	exit 1

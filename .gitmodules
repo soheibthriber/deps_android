@@ -44,3 +44,6 @@
 	url = https://github.com/tanersener/ffmpeg-kit
 	ignore = dirty
 	branch = development
+[submodule "libcaption"]
+	path = libcaption
+	url = https://github.com/szatmary/libcaption.git
