@@ -3,6 +3,7 @@
 mkdir -p ../gpac_public/extra_lib/include/
 cp -ra build/android/jni/ffmpeg/*/include/lib* ../gpac_public/extra_lib/include/
 cp -ra include/* ../gpac_public/extra_lib/include/
+cp -av mpeghdec/include/mpeghdecoder.h  ../gpac_public/extra_lib/include/
 
 mkdir -p ../gpac_public/extra_lib/include/openssl_android
 cp -ra openssl/include/openssl ../gpac_public/extra_lib/include/openssl_android/

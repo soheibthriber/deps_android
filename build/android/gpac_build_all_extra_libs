@@ -52,6 +52,10 @@ echo "Building nghttp2 for Android..."
 echo "Building openssl for Android..."
 ./build_openssl.sh $1 || exit 1
 
+echo "Building mpegh for Android..."
+./build_mpegh.sh $1 || exit 1
+
+
 
 cd libs/
 echo "Copying extra libs for GPAC Android to extra_lib dir ... "
