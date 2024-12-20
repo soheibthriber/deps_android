@@ -14,6 +14,8 @@
  * limitations under the License.
  */
 
+#include <unistd.h> 
+#include <stdio.h>  
 #define JPEG_INTERNALS
 #include "jinclude.h"
 #include "jpeglib.h"

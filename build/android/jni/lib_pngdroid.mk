@@ -1,7 +1,14 @@
 LOCAL_PATH:= $(call my-dir)
 
+
 # We need to build this for both the device (as a shared library)
 # and the host (as a static library for tools to use).
+
+LOCAL_MODULE := libz
+LOCAL_SRC_FILES := libz.so  # Path to the library file
+LOCAL_EXPORT_C_INCLUDES := $(LOCAL_PATH)  # Include directory if needed
+include $(PREBUILT_SHARED_LIBRARY)
+
 
 common_C_INCLUDES += $(LOCAL_PATH)/../../../zlib
 common_C_INCLUDES += $(LOCAL_PATH)/../../../libpng
@@ -54,15 +61,18 @@ common_COPY_HEADERS := png.h pngconf.h pngusr.h
 
 include $(CLEAR_VARS)
 
+
 LOCAL_SRC_FILES := $(common_SRC_FILES)
 LOCAL_CFLAGS += $(common_CFLAGS)
 LOCAL_C_INCLUDES += $(common_C_INCLUDES) \
-LOCAL_C_INCLUDES += $(common_C_INCLUDES) external/zlib
-common_C_INCLUDES += $(LOCAL_PATH)/../../../zlib
+#LOCAL_C_INCLUDES += $(common_C_INCLUDES) external/zlib
+#common_C_INCLUDES += $(LOCAL_PATH)
 
-LOCAL_LDLIBS    += -lz
+#LOCAL_LDLIBS    += -lz
+LOCAL_LDLIBS += -L$(LOCAL_PATH) -lz
 
-LOCAL_SHARED_LIBRARIES := libz
+
+#LOCAL_SHARED_LIBRARIES := libz
 LOCAL_MODULE:= libpng
 
 LOCAL_COPY_HEADERS_TO := $(common_COPY_HEADERS_TO)

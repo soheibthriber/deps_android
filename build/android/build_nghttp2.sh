@@ -16,7 +16,7 @@ export API=23
 
 autoreconf -i
 
-for ABI in "armeabi-v7a" "x86"; do
+for ABI in "armeabi-v7a" "x86" "arm64-v8a"; do
 
     PREFIX=${NGHTTP2}/android/${ABI}
     DEST="../build/android/libs/$ABI"
